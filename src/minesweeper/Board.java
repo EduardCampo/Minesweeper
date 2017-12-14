@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Board {
 	
 	private char[][] gameBoard = new char[10][10];
-	
+	private static Utilities util = new Utilities();
 	public Board() {
 		for(int i=0; i<10;i++) {
 			for (int j=0; j<10; j++) {
@@ -53,7 +53,7 @@ public class Board {
 	}
 	
 	private boolean placeMine(int x, int y) {
-		if (x < 0 || y < 0 || x > 9 || y > 9) {
+		if (util.OKPosition(x, y)) {
 			System.out.println("Index Error");
 			return false;
 		} else if (gameBoard[x][y] == 'M') { 
@@ -61,7 +61,9 @@ public class Board {
 			return false;
 		} else {
 			gameBoard[x][y] = 'M';
+			System.out.println("Mine set correctly");
 			return true;
 		}
 	}
+	
 }
