@@ -13,9 +13,9 @@ class BoardTestCaixaNegra {
 	
 	// Tests de valors límit a la classe placeMine
 	// També testeja getChar que retorna el valor 
-	// 	de la casella indicada. If index error, *
+	// de la casella indicada o * en cas d'error
 	@Test
-	void placeMineTest() {
+	void placeMineBorderTest() {
 		Board board = new Board();
 		//mine set correctly
 		assertTrue(board.placeMine(0,0));
