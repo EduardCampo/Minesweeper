@@ -1,11 +1,10 @@
 package minesweeper;
 
-import java.util.Scanner;
-
 public class Board {
 	
 	private char[][] gameBoard = new char[10][10];
 	private static Utilities util = new Utilities();
+	
 	public Board() {
 		for(int i=0; i<10;i++) {
 			for (int j=0; j<10; j++) {
@@ -13,6 +12,13 @@ public class Board {
 			}
 		}
 		
+	}
+	
+	public char getChar(int x,int y) {
+		if (util.wrongPosition(x, y)) {
+			return '*';
+		}
+		return gameBoard[x][y];
 	}
 
 	
@@ -33,27 +39,21 @@ public class Board {
 	}
 	
 	public void setMines(int nMines) {
-		int x; int y; Scanner key; 
+		int[] xy = new int[2];
 		boolean check;
 		for (int i = 0; i < nMines; i++) {
 			check = false;
 			while (!check) {
+				check = true;
 				System.out.println("Set the mine " + (i+1) + " position: x y");
-				key = new Scanner(System.in);
-				try {
-					x = key.nextInt();
-					y = key.nextInt();
-					check = placeMine(x,y);
-				} catch(Exception e) {
-					System.out.println("Char Error");
-				}
-				
+				xy = util.getPositionInput();
+				check = placeMine(xy[0],xy[1]);			
 			}
 		}
 	}
 	
-	private boolean placeMine(int x, int y) {
-		if (util.OKPosition(x, y)) {
+	public boolean placeMine(int x, int y) {
+		if (util.wrongPosition(x, y)) {
 			System.out.println("Index Error");
 			return false;
 		} else if (gameBoard[x][y] == 'M') { 

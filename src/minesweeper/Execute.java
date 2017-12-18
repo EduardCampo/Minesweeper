@@ -1,7 +1,5 @@
 package minesweeper;
 
-import java.util.Scanner;
-
 public class Execute {
 	
 	private static Utilities util = new Utilities();

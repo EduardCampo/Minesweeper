@@ -3,10 +3,12 @@ package minesweeper;
 import java.util.Scanner;
 
 public class Utilities {
-	public boolean OKPosition(int x, int y) {
+	
+	public boolean wrongPosition(int x, int y) {
 		if (x < 0 || y < 0 || x > 9 || y > 9) return true;
 		return false;
 	}
+	
 	public int getNumberOfMines() {
 		Scanner key;
 		int nMines = 1;
@@ -26,5 +28,21 @@ public class Utilities {
 			}
 		}
 		return nMines;
+	}
+	
+	public int[] getPositionInput() {
+		int[] xy = new int[2];
+		Scanner key = new Scanner(System.in);
+		try {
+			xy[0] = key.nextInt() - 1;
+			xy[1] = key.nextInt() - 1;
+		} catch(Exception e) {
+			System.out.println("Char Error");
+			xy[0] = -1;
+			key.close();
+			return xy;
+		}
+		key.close();
+		return xy;	
 	}
 }
