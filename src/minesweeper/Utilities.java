@@ -11,7 +11,10 @@ public class Utilities {
 	 * @return true si index error, flase si són correctes
 	 */
 	public boolean wrongPosition(int x, int y) {
-		if (x < 0 || y < 0 || x > 9 || y > 9) return true;
+		if (x < 0 || y < 0 || x > 9 || y > 9) {
+			System.out.println("Index Error");
+			return true;
+		}
 		return false;
 	}
 	
@@ -42,25 +45,47 @@ public class Utilities {
 	}
 	
 	/**
-	 * Funció per demanar al usuari les posicions x i y
-	 * d'una casella del taulell
+	 * Demana al usuari les posicions x i y d'una casella del taulell
 	 * Es fa servir sempre que es necessita aquest input
 	 * del usuari (posar una mina, bandera o obrir casella)
 	 * @return array de int on (0 -> x) i (1 -> y)
 	 */
 	public int[] getPositionInput() {
 		int[] xy = new int[2];
+		int x; int y;
 		Scanner key = new Scanner(System.in);
 		try {
-			xy[0] = key.nextInt() - 1;
-			xy[1] = key.nextInt() - 1;
+			xy[0] = key.nextInt();
+			xy[1] = key.nextInt();
 		} catch(Exception e) {
 			System.out.println("Char Error");
 			xy[0] = -1;
-			key.close();
 			return xy;
 		}
-		key.close();
 		return xy;	
 	}
+	
+	/**
+	 * Demana al usuari quina opció que vol triar
+	 * @return 1 si vol revelar una casella
+	 * 		   2 si vol posar o treure una bandera
+	 */
+	public int getOption() {
+		int option = 0;
+		System.out.println("Select what you want to do:");
+		System.out.println("1 - Open square");
+		System.out.println("2 - Set/Remove flag");
+		Scanner k = new Scanner(System.in);
+		try {
+			option = k.nextInt();
+		} catch(Exception e) {
+			System.out.println("Option error");
+		}
+		if (option != 1 && option != 2) {
+			System.out.println("Invalid Option");
+			option = 0;
+		}
+		return option;
+	}
+	
 }

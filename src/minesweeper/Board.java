@@ -96,7 +96,6 @@ public class Board {
 		for (int i = 0; i < nMines; i++) {
 			check = false;
 			while (!check) {
-				check = true;
 				System.out.println("Set the mine " + (i+1) + " position: x y");
 				xy = util.getPositionInput();
 				check = placeMine(xy[0],xy[1]);			
@@ -113,7 +112,6 @@ public class Board {
 	 */
 	public boolean placeMine(int x, int y) {
 		if (util.wrongPosition(x, y)) { // Decision 1
-			System.out.println("Index Error");
 			return false;
 		} else if (gameBoard[x][y] == 'M') { // Decision 2
 			System.out.println("Mine there already");
@@ -128,26 +126,52 @@ public class Board {
 	/**
 	 * Posa una bandera al taulell, dona error si no s'hi pot
 	 * posar una bandera 
-	 * Posa F si hi ha una mina allà o I en cas contrari
+	 * Crida flagLogic per saber com ha de quedar la casella
 	 */
 	public void setFlag() {
 		int[] xy = new int[2];
-		int x; int y;
-		boolean check = false;
-		while (!check) {
+		int x = 0; int y = 0;
+		char ch = '*';
+		do {
+			System.out.println("Where do you want to set/remove a flag?");
 			xy = util.getPositionInput();
 			x = xy[0]; y = xy[1];
 			if (!util.wrongPosition(x, y)){
-				if (gameBoard[x][y] == 'M') {
-					gameBoard[x][y] = 'F';
-					check = true;
-				} else if (gameBoard[x][y] == 'O'){
-					gameBoard[x][y] = 'I';
-					check = true;
-				} else {
-					System.out.println("Can't flag this square");
-				}
-			}
+				ch = flagLogic(x, y);
+			} 
+		} while (ch == '*');
+		gameBoard[x][y] = flagLogic(x, y);
+	} 
+	
+	/**
+	 * Mira com ha de quedar una casella després de que es
+	 * vulgui posar o treure una bandera. Retorna * si no 
+	 * es pot posar una bandera en aquella casella
+	 * @param x
+	 * @param y
+	 * @return caràcter a posar a la funció setFlag
+	 */
+	public char flagLogic(int x, int y) {
+		if (gameBoard[x][y] == 'M') {
+			return 'F';
+		} else if (gameBoard[x][y] == 'O'){
+			return 'I';
+		} else if (gameBoard[x][y] == 'F'){
+			return 'M';
+		} else if (gameBoard[x][y] == 'I'){
+			return 'O';
+		} else {
+			System.out.println("Can't flag this square");
+			return '*';
 		}
+	}
+	
+	/**
+	 * Mira si totes les banderes estan ben posades, o sigui:
+	 * No hi ha cap M ni cap I
+	 * @return
+	 */
+	public boolean gameWon() {
+		return true;
 	}
 }
