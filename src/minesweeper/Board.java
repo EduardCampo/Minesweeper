@@ -40,6 +40,22 @@ public class Board {
 		}
 		return gameBoard[x][y];
 	}
+	
+	/**
+	 * Introdueix el caràcter c a les posicions x i y
+	 * de la gameboard
+	 * @param x
+	 * @param y
+	 * @param c
+	 * @return true si l'ha posat, false si no ha pogut
+	 */
+	public boolean setChar(int x,int y, char c) {
+		if (util.wrongPosition(x, y)) {
+			return false;
+		}
+		gameBoard[x][y] = c;
+		return true;
+	}
 
 	/**
 	 *  Mostra la matriu de caràcters tal com està
@@ -116,7 +132,7 @@ public class Board {
 		} else if (gameBoard[x][y] == 'M') { // Decision 2
 			System.out.println("Mine there already");
 			return false;
-		} else { 
+		} else { // Else
 			gameBoard[x][y] = 'M';
 			System.out.println("Mine set correctly");
 			return true;
@@ -152,15 +168,15 @@ public class Board {
 	 * @return caràcter a posar a la funció setFlag
 	 */
 	public char flagLogic(int x, int y) {
-		if (gameBoard[x][y] == 'M') {
+		if (gameBoard[x][y] == 'M') { // Decision 1
 			return 'F';
-		} else if (gameBoard[x][y] == 'O'){
+		} else if (gameBoard[x][y] == 'O'){ // Decision 2
 			return 'I';
-		} else if (gameBoard[x][y] == 'F'){
+		} else if (gameBoard[x][y] == 'F'){ // Decision 3
 			return 'M';
-		} else if (gameBoard[x][y] == 'I'){
+		} else if (gameBoard[x][y] == 'I'){ // Decision 4
 			return 'O';
-		} else {
+		} else { // Else
 			System.out.println("Can't flag this square");
 			return '*';
 		}
@@ -172,6 +188,13 @@ public class Board {
 	 * @return
 	 */
 	public boolean gameWon() {
+		for (int i = 0; i < gameBoard.length; i++) {
+		    for (int j = 0; j < gameBoard.length; j++) {
+		    	if (gameBoard[i][j] == 'M' || gameBoard[i][j] == 'I') {
+		    		return false;
+		    	}
+		    }
+		}
 		return true;
 	}
 }

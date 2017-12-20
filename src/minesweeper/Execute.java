@@ -4,6 +4,11 @@ public class Execute {
 	
 	private static Utilities util = new Utilities();
 	
+	/**
+	 * Classe principal de la execució del joc
+	 * @param args
+	 * @throws Exception
+	 */
 	public static void main(String[] args) throws Exception{
 		boolean gameOver = false;
 		Board board = new Board();
@@ -11,9 +16,18 @@ public class Execute {
 		board.setMines(util.getNumberOfMines());
 		while (!gameOver) {
 			menu(board);
+			gameOver = board.gameWon();
 		}
+		System.out.println("YOU WIN");
 	}
 	
+	/**
+	 * Escriu i demana una input al usuari mitjançant la
+	 * funció getOption de utils
+	 * Repeteix el menú fins que l'usuari escriu una opció
+	 * correcta, i aleshores crida la funció corresponent
+	 * @param board
+	 */
 	public static void menu(Board board) {
 		boolean check = false;
 		int option;
