@@ -219,7 +219,6 @@ public class Board {
 				if (gameBoard[x][y] == 'M') {
 					gameOver();
 				}
-				//MIRAR SI ÉS UNA MINA PERQUE NO ESTÀ CONTROLAT 
 				checkMinesAround(x, y);
 				check = true;
 			} 
