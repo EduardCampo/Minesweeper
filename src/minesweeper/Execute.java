@@ -36,6 +36,7 @@ public class Execute {
 			option = util.getOption();
 			if (option == 1) {
 				check = true;
+				board.openSquare();
 			} else if (option == 2) {
 				check = true;
 				board.setFlag();

@@ -4,7 +4,8 @@ public class Board {
 	
 	
 	// Codis del taulell
-	// O - Sense mines al voltant
+	// · - Sense obrir
+	// - - Sense mines al voltant
 	// 1-8 - Amb X mines al voltant
 	// M - Mina
 	// F - Bandera sobre una Mina
@@ -21,7 +22,7 @@ public class Board {
 	public Board() {
 		for(int i=0; i<10;i++) {
 			for (int j=0; j<10; j++) {
-				gameBoard[i][j] = 'O';
+				gameBoard[i][j] = '·';
 			}
 		}
 		
@@ -81,7 +82,7 @@ public class Board {
 	 *  mines i tampoc s'indica si les banderes estan ben
 	 *  posades al taulell
 	 */
-	public void printBoardFINAL() {
+	public void printBoardPlayer() {
 		System.out.print("  ");
 		System.out.println();
 		for (int i = -1; i < gameBoard.length; i++) {
@@ -92,9 +93,12 @@ public class Board {
 		    	if (i == -1) { System.out.print(j + " ");}
 		    	else {
 		    		if (gameBoard[i][j] == 'M') {
-		    			
+		    			System.out.print("· ");
+		    		} else if (gameBoard[i][j] == 'I') {
+		    			System.out.print("F ");
+		    		} else {
+		    			System.out.print(gameBoard[i][j] + " ");
 		    		}
-		    		System.out.print(gameBoard[i][j] + " ");
 		    	}
 		    } 
 		    System.out.println();
@@ -170,12 +174,12 @@ public class Board {
 	public char flagLogic(int x, int y) {
 		if (gameBoard[x][y] == 'M') { // Decision 1
 			return 'F';
-		} else if (gameBoard[x][y] == 'O'){ // Decision 2
+		} else if (gameBoard[x][y] == '·'){ // Decision 2
 			return 'I';
 		} else if (gameBoard[x][y] == 'F'){ // Decision 3
 			return 'M';
 		} else if (gameBoard[x][y] == 'I'){ // Decision 4
-			return 'O';
+			return '·';
 		} else { // Else
 			System.out.println("Can't flag this square");
 			return '*';
@@ -197,4 +201,92 @@ public class Board {
 		}
 		return true;
 	}
+
+	/**
+	 * Obre una casella del taulell, si es troba una mina crida
+	 * la funció GameOver
+	 * @return
+	 */
+	public boolean openSquare() {
+		int[] xy = new int[2];
+		int x = 0; int y = 0;
+		boolean check = false;
+		do {
+			System.out.println("What square do you want to open?");
+			xy = util.getPositionInput();
+			x = xy[0]; y = xy[1];
+			if (!util.wrongPosition(x, y)){
+				if (gameBoard[x][y] == 'M') {
+					gameOver();
+				}
+				//MIRAR SI ÉS UNA MINA PERQUE NO ESTÀ CONTROLAT 
+				checkMinesAround(x, y);
+				check = true;
+			} 
+		} while (!check);
+		return true;
+	}
+	
+	/**
+	 * Funció cridada per openSquare que conta les mines que hi ha
+	 * al voltant per posar tal nombre a la casella corresponent
+	 * Si no hi ha cap mina al voltant es passa a realitzar una
+	 * execució recursiva de la funció openSquare mitjançant una
+	 * crida prèvia a la funció setupRecursive
+	 * @param x
+	 * @param y
+	 * @return
+	 */
+	public void checkMinesAround(int x, int y) {
+		int[] xy = new int[2];
+		int x2; int y2;
+		int minesAround = 0;
+		for (int i = 0; i < 8; i++) {
+			xy = util.getRoundSquare(x, y, i);
+			x2 = xy[0]; y2 = xy[1];
+			if (!util.wrongPosition(x2, y2)){
+				if (gameBoard[x2][y2] == 'M' || gameBoard[x2][y2] == 'F') {
+					minesAround++;
+				}
+			}
+		}
+		if (minesAround == 0) {
+			gameBoard[x][y] = '-';
+			setupRecursive(x, y);
+		} else {
+			gameBoard[x][y] = (char)(minesAround + 48);
+		}
+		
+	}
+	
+	/**
+	 * Recursiu per a les caselles buides, perque s'obrin les
+	 * del seu voltant fins a acabar amb un nombre
+	 * @param x
+	 * @param y
+	 */
+	public void setupRecursive(int x, int y) {
+		int[] xy = new int[2];
+		int x2; int y2;
+		for (int i = 0; i < 8; i++) {
+			xy = util.getRoundSquare(x, y, i);
+			x2 = xy[0]; y2 = xy[1];
+			if (!util.wrongPosition(x2, y2)){
+				if (gameBoard[x2][y2] != '-') {
+					checkMinesAround(x2, y2);
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Acaba el joc mostrant totes les mines i parant l'execució
+	 * del programa abruptament
+	 */
+	public void gameOver() {
+		System.out.println("GAME OVER: YOU LOST");
+		printBoard();
+		System.exit(1);
+	}
+
 }

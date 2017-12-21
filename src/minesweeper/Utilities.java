@@ -12,7 +12,7 @@ public class Utilities {
 	 */
 	public boolean wrongPosition(int x, int y) {
 		if (x < 0 || y < 0 || x > 9 || y > 9) {
-			System.out.println("Index Error");
+			//System.out.println("Index Error");
 			return true;
 		}
 		return false;
@@ -79,7 +79,7 @@ public class Utilities {
 		try {
 			option = k.nextInt();
 		} catch(Exception e) {
-			System.out.println("Option error");
+			System.out.println("Option Error");
 		}
 		if (option != 1 && option != 2) {
 			System.out.println("Invalid Option");
@@ -88,4 +88,27 @@ public class Utilities {
 		return option;
 	}
 	
+	/**
+	 * Retorna les x i y amb les noves posicions per mirar
+	 * 0 1 2
+	 * 3   4
+	 * 5 6 7
+	 * @param x
+	 * @param y
+	 * @param i
+	 * @return
+	 */
+	public int[] getRoundSquare(int x, int y, int i) {
+		int[] xy = new int[] {-2,-2};
+		if      (i == 0) { xy[0] = x-1; xy[1] = y+1; } 
+		else if (i == 1) { xy[0] = x;   xy[1] = y+1; }
+		else if (i == 2) { xy[0] = x+1; xy[1] = y+1; }
+		else if (i == 3) { xy[0] = x-1; xy[1] = y;   }
+		else if (i == 4) { xy[0] = x+1; xy[1] = y;   }
+		else if (i == 5) { xy[0] = x-1; xy[1] = y-1; }
+		else if (i == 6) { xy[0] = x;   xy[1] = y-1; }
+		else if (i == 7) { xy[0] = x+1; xy[1] = y-1; }
+		else { System.out.println("Fatal Error"); }
+		return xy;
+	}
 }

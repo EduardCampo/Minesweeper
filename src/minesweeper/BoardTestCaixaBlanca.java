@@ -59,6 +59,43 @@ class BoardTestCaixaBlanca {
 		assertEquals('*',board.flagLogic(0,0));
 	}
 	
+	// Decision testing a la classe getRoundSquare
+	// Les decisions són del 0 al 7 com es veu a la classe
+	// S'assumeix que si un és True, els anteriors són False
+	@Test
+	void getRoundSquareDecisonTest() {
+		Utilities util = new Utilities();
+		int[] xy = new int[2];
+		// 0 - True;
+		xy[0] = 3; xy[1] = 5;
+		assertArrayEquals(xy, util.getRoundSquare(4, 4, 0));
+		// 1 - True;
+		xy[0] = 4; xy[1] = 5;
+		assertArrayEquals(xy, util.getRoundSquare(4, 4, 1));
+		// 2 - True;
+		xy[0] = 5; xy[1] = 5;
+		assertArrayEquals(xy, util.getRoundSquare(4, 4, 2));
+		// 3 - True;
+		xy[0] = 3; xy[1] = 4;
+		assertArrayEquals(xy, util.getRoundSquare(4, 4, 3));
+		// 4 - True;
+		xy[0] = 5; xy[1] = 4;
+		assertArrayEquals(xy, util.getRoundSquare(4, 4, 4));
+		// 5 - True;
+		xy[0] = 3; xy[1] = 3;
+		assertArrayEquals(xy, util.getRoundSquare(4, 4, 5));
+		// 6 - True;
+		xy[0] = 4; xy[1] = 3;
+		assertArrayEquals(xy, util.getRoundSquare(4, 4, 6));
+		// 7 - True;
+		xy[0] = 5; xy[1] = 3;
+		assertArrayEquals(xy, util.getRoundSquare(4, 4, 7));
+		// Else (ERROR)
+		xy[0] = -2; xy[1] = -2;
+		assertArrayEquals(xy, util.getRoundSquare(4, 4, 85));
+		
+	}
+	
 	// Condition testing a la classe gameWon
 	// Les condicions són:
 	// M - Troba una M al taulell
