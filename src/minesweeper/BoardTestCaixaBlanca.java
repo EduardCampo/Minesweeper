@@ -43,7 +43,7 @@ class BoardTestCaixaBlanca {
 		assertEquals('F',board.flagLogic(0,0));
 		// 1 - False
 		// 2 - True
-		board.setChar(0, 0, 'O');
+		board.setChar(0, 0, '·');
 		assertEquals('I',board.flagLogic(0,0));
 		// 1,2 - False
 		// 3 - True
@@ -52,7 +52,7 @@ class BoardTestCaixaBlanca {
 		// 1,2,3 - False
 		// 4 - True
 		board.setChar(0, 0, 'I');
-		assertEquals('O',board.flagLogic(0,0));
+		assertEquals('·',board.flagLogic(0,0));
 		// 1,2,3,4 - False
 		// Else
 		board.setChar(0, 0, '7');

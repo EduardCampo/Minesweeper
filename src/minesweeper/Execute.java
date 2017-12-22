@@ -32,7 +32,10 @@ public class Execute {
 		boolean check = false;
 		int option;
 		do {
-			board.printBoard();
+			// THIS IS THE DEBUG PRINT BOARD
+			//board.printBoard();
+			// THIS IS THE REAL PLAYER PRINT BOARD
+			board.printBoardPlayer();
 			option = util.getOption();
 			if (option == 1) {
 				check = true;
