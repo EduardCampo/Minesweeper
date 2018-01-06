@@ -1,13 +1,18 @@
 package minesweeper;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotEquals;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.util.Scanner;
+
+import org.junit.Before;
+import org.junit.Test;
 
 class BoardTestCaixaBlanca {
 
-	@BeforeEach
+	@Before
 	void setUp() throws Exception {
 	}
 	

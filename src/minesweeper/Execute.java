@@ -31,18 +31,38 @@ public class Execute {
 	public static void menu(Board board) {
 		boolean check = false;
 		int option;
+		int[] xy = new int[2];
+		int x; 
+		int y;
+		boolean error = false;
 		do {
 			// THIS IS THE DEBUG PRINT BOARD
 			//board.printBoard();
 			// THIS IS THE REAL PLAYER PRINT BOARD
 			board.printBoardPlayer();
 			option = util.getOption();
+			
 			if (option == 1) {
 				check = true;
-				board.openSquare();
+				error = false;
+				System.out.println("What square do you want to open?");
+				
+				do {
+					xy = util.getPositionInput();
+					x = xy[0]; y = xy[1];
+					error = board.openSquare(x,y);
+				} while (error == false);
+				
 			} else if (option == 2) {
 				check = true;
-				board.setFlag();
+				error = false;
+				System.out.println("Where do you want to set/remove a flag?");								
+				
+				do {
+					xy = util.getPositionInput();
+					x = xy[0]; y = xy[1];
+					error = board.setFlag(x,y);
+				} while (error == false);
 			} 
 		} while (!check);
 	}

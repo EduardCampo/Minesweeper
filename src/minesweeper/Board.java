@@ -12,7 +12,7 @@ public class Board {
 	// I - Bandera on no hi ha Mina
 	// X - Mina explotada
 	
-	private char[][] gameBoard = new char[10][10];
+	char[][] gameBoard = new char[10][10];
 	private static Utilities util = new Utilities();
 	
 	/**
@@ -148,19 +148,12 @@ public class Board {
 	 * posar una bandera 
 	 * Crida flagLogic per saber com ha de quedar la casella
 	 */
-	public void setFlag() {
-		int[] xy = new int[2];
-		int x = 0; int y = 0;
-		char ch = '*';
-		do {
-			System.out.println("Where do you want to set/remove a flag?");
-			xy = util.getPositionInput();
-			x = xy[0]; y = xy[1];
-			if (!util.wrongPosition(x, y)){
-				ch = flagLogic(x, y);
-			} 
-		} while (ch == '*');
+	public boolean setFlag(int x, int y) {	
+		if (util.wrongPosition(x, y)){
+			return false;
+		}
 		gameBoard[x][y] = flagLogic(x, y);
+		return true;
 	} 
 	
 	/**
@@ -207,23 +200,15 @@ public class Board {
 	 * la funció GameOver
 	 * @return
 	 */
-	public boolean openSquare() {
-		int[] xy = new int[2];
-		int x = 0; int y = 0;
+	public boolean openSquare(int x, int y) {
 		boolean check = false;
-		do {
-			System.out.println("What square do you want to open?");
-			xy = util.getPositionInput();
-			x = xy[0]; y = xy[1];
 			if (!util.wrongPosition(x, y)){
 				if (gameBoard[x][y] == 'M' || gameBoard[x][y] == 'F') {
 					gameOver();
 				}
 				checkMinesAround(x, y);
-				check = true;
-			} 
-		} while (!check);
-		return true;
+				return true;
+			} else return false;
 	}
 	
 	/**
