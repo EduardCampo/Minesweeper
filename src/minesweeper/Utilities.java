@@ -36,9 +36,11 @@ public class Utilities {
 					check = true;
 				} else {
 					System.out.println("Please enter a number between 1 and 99");
+					return 0;
 				}
 			} catch(Exception e) {
 				System.out.println("Char error");
+				return 0;
 			}
 		}
 		return nMines;
@@ -53,6 +55,7 @@ public class Utilities {
 	public int[] getPositionInput() {
 		int[] xy = new int[2];
 		int x; int y;
+		int error[] = {-1,-1};
 		Scanner key = new Scanner(System.in);
 		try {
 			xy[0] = key.nextInt();
@@ -60,7 +63,7 @@ public class Utilities {
 		} catch(Exception e) {
 			System.out.println("Char Error");
 			xy[0] = -1;
-			return xy;
+			return error;
 		}
 		return xy;	
 	}
@@ -80,6 +83,7 @@ public class Utilities {
 			option = k.nextInt();
 		} catch(Exception e) {
 			System.out.println("Option Error");
+			return 0;
 		}
 		if (option != 1 && option != 2) {
 			System.out.println("Invalid Option");

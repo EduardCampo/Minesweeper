@@ -10,18 +10,15 @@ import java.util.Scanner;
 import org.junit.Before;
 import org.junit.Test;
 
-class BoardTestCaixaBlanca {
+public class BoardTestCaixaBlanca {
 
-	@Before
-	void setUp() throws Exception {
-	}
 	
 	// Decision testing a la classe placeMine
 	// Les decisions 1 i 2 estan especificades a la classe
 	// Comprovem a més que s'ha fet el que toca amb ajuda
 	// de la classe getChar 
 	@Test
-	void placeMineDecisonTest() {
+	public void placeMineDecisonTest() {
 		Board board = new Board();
 		// 1 - True
 		assertFalse(board.placeMine(-1,0));
@@ -41,7 +38,7 @@ class BoardTestCaixaBlanca {
 	// Decision testing a la classe flagLogic
 	// Les decisions 1, 2, 3 i 4 estan especificades a la classe
 	@Test
-	void flagLogicDecisonTest() {
+	public void flagLogicDecisonTest() {
 		Board board = new Board();
 		board.setChar(0, 0, 'M');
 		// 1 - True
@@ -68,7 +65,7 @@ class BoardTestCaixaBlanca {
 	// Les decisions són del 0 al 7 com es veu a la classe
 	// S'assumeix que si un és True, els anteriors són False
 	@Test
-	void getRoundSquareDecisonTest() {
+	public void getRoundSquareDecisonTest() {
 		Utilities util = new Utilities();
 		int[] xy = new int[2];
 		// 0 - True;
@@ -106,7 +103,7 @@ class BoardTestCaixaBlanca {
 	// M - Troba una M al taulell
 	// I - Troba una I al taulell
 	@Test
-	void gameWonConditionTest() {
+	public void gameWonConditionTest() {
 		Board board = new Board();
 		// M - False
 		// I - False
@@ -129,7 +126,7 @@ class BoardTestCaixaBlanca {
 	// 3 - x > 9
 	// 4 - y > 9
 	@Test
-	void wrongPositionConditionTest() {
+	public void wrongPositionConditionTest() {
 		Utilities util = new Utilities();
 		// 1 - True
 		// 2,3,4 - False

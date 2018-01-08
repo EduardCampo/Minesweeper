@@ -186,18 +186,101 @@ public class BoardTestCaixaNegra {
 		assertFalse(util.wrongPosition(5, 5));
 		assertFalse(util.wrongPosition(0, 9));
 		
-	}
-	
+	}	
 	
 	@Test
 	public void getNumberOfMinesTest() {
+		
+		int guess;
+		ByteArrayInputStream in;
 		Utilities util = new Utilities();
-		String data = "11";
-	    InputStream in = new ByteArrayInputStream(data.getBytes());
+		
+		in = new ByteArrayInputStream("1".getBytes());
 	    System.setIn(in);
-	    Scanner key = new Scanner(System.in);
-		key = new Scanner(System.in);
-		guess = util.getNumberOfMines(key);
+		guess = util.getNumberOfMines();
+		assertEquals(guess,1);
+		
+		in = new ByteArrayInputStream("99".getBytes());
+	    System.setIn(in);
+		guess = util.getNumberOfMines();
+		assertEquals(guess,99);
+		
+		in = new ByteArrayInputStream("11".getBytes());
+	    System.setIn(in);
+		guess = util.getNumberOfMines();
+		assertEquals(guess,11);
+		
+		in = new ByteArrayInputStream("0".getBytes());
+	    System.setIn(in);
+		guess = util.getNumberOfMines();
+		assertEquals(guess,0);
+		
+		in = new ByteArrayInputStream("100".getBytes());
+	    System.setIn(in);
+		guess = util.getNumberOfMines();
+		assertEquals(guess,0);
+		
+		in = new ByteArrayInputStream("-1".getBytes());
+	    System.setIn(in);
+		guess = util.getNumberOfMines();
+		assertEquals(guess,0);
+		
+		in = new ByteArrayInputStream("hey".getBytes());
+	    System.setIn(in);
+		guess = util.getNumberOfMines();
+		assertEquals(guess,0);
+		
+	}
+	
+	@Test
+	public void getPositionInputTest() {
+		
+		int check[];
+		ByteArrayInputStream in;
+		Utilities util = new Utilities();
+		
+		in = new ByteArrayInputStream("0 0".getBytes());
+	    System.setIn(in);
+		check = new int[] {0,0};
+		assertArrayEquals(check,util.getPositionInput());
+		
+		in = new ByteArrayInputStream("9 9".getBytes());
+	    System.setIn(in);
+		check = new int[] {9,9};
+		assertArrayEquals(check,util.getPositionInput());
+		
+		in = new ByteArrayInputStream("hey".getBytes());
+	    System.setIn(in);
+		check = new int[] {-1,-1};
+		assertArrayEquals(check,util.getPositionInput());
+		
+	}
+	
+	@Test
+	public void getOptionTest() {
+		
+		ByteArrayInputStream in;
+		Utilities util = new Utilities();
+		
+		in = new ByteArrayInputStream("1".getBytes());
+	    System.setIn(in);
+		assertEquals(util.getOption(),1);
+		
+		in = new ByteArrayInputStream("2".getBytes());
+	    System.setIn(in);
+		assertEquals(util.getOption(),2);
+		
+		in = new ByteArrayInputStream("3".getBytes());
+	    System.setIn(in);
+		assertEquals(util.getOption(),0);
+		
+		in = new ByteArrayInputStream("-1".getBytes());
+	    System.setIn(in);
+		assertEquals(util.getOption(),0);
+		
+		in = new ByteArrayInputStream("hey".getBytes());
+	    System.setIn(in);
+		assertEquals(util.getOption(),0);
 		
 	}
 

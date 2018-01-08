@@ -10,10 +10,14 @@ public class Execute {
 	 * @throws Exception
 	 */
 	public static void main(String[] args) throws Exception{
+		int checkm = 0;
 		boolean gameOver = false;
 		Board board = new Board();
-		board.printBoard();		
-		board.setMines(util.getNumberOfMines());
+		board.printBoard();	
+		while (checkm==0) {
+			checkm = util.getNumberOfMines();			
+		}
+		board.setMines(checkm);
 		while (!gameOver) {
 			menu(board);
 			gameOver = board.gameWon();
@@ -45,9 +49,9 @@ public class Execute {
 			if (option == 1) {
 				check = true;
 				error = false;
-				System.out.println("What square do you want to open?");
 				
 				do {
+					System.out.println("What square do you want to open?");
 					xy = util.getPositionInput();
 					x = xy[0]; y = xy[1];
 					error = board.openSquare(x,y);
@@ -56,9 +60,9 @@ public class Execute {
 			} else if (option == 2) {
 				check = true;
 				error = false;
-				System.out.println("Where do you want to set/remove a flag?");								
 				
 				do {
+					System.out.println("Where do you want to set/remove a flag?");								
 					xy = util.getPositionInput();
 					x = xy[0]; y = xy[1];
 					error = board.setFlag(x,y);

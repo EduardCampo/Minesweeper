@@ -132,6 +132,7 @@ public class Board {
 	 */
 	public boolean placeMine(int x, int y) {
 		if (util.wrongPosition(x, y)) { // Decision 1
+			System.out.println("Not a valid position");
 			return false;
 		} else if (gameBoard[x][y] == 'M') { // Decision 2
 			System.out.println("Mine there already");
@@ -150,6 +151,7 @@ public class Board {
 	 */
 	public boolean setFlag(int x, int y) {	
 		if (util.wrongPosition(x, y)){
+			System.out.println("Not a valid position");
 			return false;
 		}
 		gameBoard[x][y] = flagLogic(x, y);
@@ -208,7 +210,10 @@ public class Board {
 				}
 				checkMinesAround(x, y);
 				return true;
-			} else return false;
+			} else {
+				System.out.println("Not a valid position");
+				return false;
+			}
 	}
 	
 	/**
