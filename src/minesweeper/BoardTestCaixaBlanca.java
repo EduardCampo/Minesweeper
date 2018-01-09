@@ -95,6 +95,27 @@ public class BoardTestCaixaBlanca {
 		// Else (ERROR)
 		xy[0] = -2; xy[1] = -2;
 		assertArrayEquals(xy, util.getRoundSquare(4, 4, 85));
+	}
+	
+	// Decision testing a la classe checkMinesAround
+	// Les decisions i el seu nom es veuen a la classe
+	// La entrada està controlada abans de cridar la funció,
+	// per tant no es poden entrar valors xy incorrectes 
+	@Test
+	public void checkMinesAroundDecisionTest() {
+		Board board = new Board();
+		// 1,2 - False
+		// 3 - True
+		assertEquals(0,board.checkMinesAround(0, 0));
+		// 1 - False
+		// 2,3 - True
+		board.setChar(0, 0, 'M');
+		assertEquals(1,board.checkMinesAround(1, 1));
+		// 1,2 - True
+		// 3 - False
+		board.setChar(0, 1, 'F');
+		board.setChar(2, 2, 'F');
+		assertEquals(3,board.checkMinesAround(1, 1));
 		
 	}
 	

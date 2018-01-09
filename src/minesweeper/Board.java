@@ -226,26 +226,26 @@ public class Board {
 	 * @param y
 	 * @return
 	 */
-	public void checkMinesAround(int x, int y) {
+	public int checkMinesAround(int x, int y) {
 		int[] xy = new int[2];
 		int x2; int y2;
 		int minesAround = 0;
 		for (int i = 0; i < 8; i++) {
 			xy = util.getRoundSquare(x, y, i);
 			x2 = xy[0]; y2 = xy[1];
-			if (!util.wrongPosition(x2, y2)){
-				if (gameBoard[x2][y2] == 'M' || gameBoard[x2][y2] == 'F') {
+			if (!util.wrongPosition(x2, y2)){ // Decision 1
+				if (gameBoard[x2][y2] == 'M' || gameBoard[x2][y2] == 'F') { // Decision 2
 					minesAround++;
 				}
 			}
 		}
-		if (minesAround == 0) {
+		if (minesAround == 0) { // Decision 3
 			gameBoard[x][y] = '-';
 			setupRecursive(x, y);
 		} else {
 			gameBoard[x][y] = (char)(minesAround + 48);
 		}
-		
+		return minesAround;
 	}
 	
 	/**

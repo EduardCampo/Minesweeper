@@ -1,7 +1,6 @@
 package minesweeper;
 
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertNotEquals;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -42,11 +41,14 @@ public class BoardTestCaixaNegra {
 		assertFalse(board.placeMine(10,10)); assertEquals(board.getChar(10,10),'*');
 	}
 	
+	// Tests de valors límit a la classe setFlag
+	// També testeja getChar que retorna el valor 
+	// de la casella indicada o * en cas d'error
 	@Test
 	public void placeFlagBorderTest() {
 		Board board = new Board();
-		//flag set correctly
 		
+		//flag set correctly
 		assertTrue(board.setFlag(0,0)); assertEquals(board.getChar(0,0),'I');
 		assertTrue(board.setFlag(1,0)); assertEquals(board.getChar(1,0),'I');
 		assertTrue(board.setFlag(0,1)); assertEquals(board.getChar(0,1),'I');
@@ -75,7 +77,6 @@ public class BoardTestCaixaNegra {
 		assertTrue(board.placeMine(8,9));
 		assertTrue(board.setFlag(8,9)); assertEquals(board.getChar(8,9),'F');
 		
-		
 		//index error
 		board = new Board();
 		assertFalse(board.setFlag(0,-1));  assertEquals(board.getChar(0,-1),'*');
@@ -86,6 +87,44 @@ public class BoardTestCaixaNegra {
 		assertFalse(board.setFlag(10,10)); assertEquals(board.getChar(10,10),'*');
 		
 	}
+	
+	// Varis tests per mirar quantes mines hi ha al
+	// voltant d'una casella específica
+	@Test
+	public void checkMinesAroundTest() {
+		Board board = new Board();
+		// Test del cuadrant 4,4
+		assertEquals(0,board.checkMinesAround(4, 4));
+		board.setChar(3, 3, 'F');
+		assertEquals(1,board.checkMinesAround(4, 4));
+		board.setChar(3, 4, 'F');
+		assertEquals(2,board.checkMinesAround(4, 4));
+		board.setChar(3, 5, 'M');
+		assertEquals(3,board.checkMinesAround(4, 4));
+		board.setChar(4, 3, 'M');
+		assertEquals(4,board.checkMinesAround(4, 4));
+		board.setChar(4, 5, 'F');
+		assertEquals(5,board.checkMinesAround(4, 4));
+		board.setChar(5, 3, 'F');
+		assertEquals(6,board.checkMinesAround(4, 4));
+		board.setChar(5, 4, 'F');
+		assertEquals(7,board.checkMinesAround(4, 4));
+		board.setChar(5, 5, 'M');
+		assertEquals(8,board.checkMinesAround(4, 4));
+		// Test de la punta 0,0
+		assertEquals(0,board.checkMinesAround(0, 0));
+		board.setChar(1, 0, 'F');
+		assertEquals(1,board.checkMinesAround(0, 0));
+		board.setChar(1, 1, 'M');
+		assertEquals(2,board.checkMinesAround(0, 0));
+		board.setChar(0, 1, 'F');
+		assertEquals(3,board.checkMinesAround(0, 0));
+		board.setChar(-1, 0, 'F');
+		assertEquals(3,board.checkMinesAround(0, 0));
+	}
+	
+	// Comprova que es retornin els valors que toquen
+	// a la classe flagLogic
 	@Test
 	public void flagLogicTest() {
 		Board board = new Board();
@@ -99,9 +138,11 @@ public class BoardTestCaixaNegra {
 		assertEquals(board.flagLogic(3,0),'·');
 		board.gameBoard[4][0] = '7';
 		assertEquals(board.flagLogic(4,0),'*');
-		
 	}
 	
+	
+	// Test per veure si s'ha guanyat o no el joc
+	// amb la classe gameWon
 	@Test
 	public void gameWonTest() {
 		Board board = new Board();
@@ -185,7 +226,6 @@ public class BoardTestCaixaNegra {
 		assertFalse(util.wrongPosition(0, 0));
 		assertFalse(util.wrongPosition(5, 5));
 		assertFalse(util.wrongPosition(0, 9));
-		
 	}	
 	
 	@Test
