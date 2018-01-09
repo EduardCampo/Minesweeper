@@ -26,24 +26,20 @@ public class Utilities {
 	public int getNumberOfMines() {
 		Scanner key;
 		int nMines = 1;
-		boolean check = false;
-		while (!check) {
-			try {
-				System.out.println("How many mines do you want?");
-				key = new Scanner(System.in);
-				nMines = key.nextInt();
-				if (nMines > 0 && nMines < 100) {
-					check = true;
-				} else {
-					System.out.println("Please enter a number between 1 and 99");
-					return 0;
-				}
-			} catch(Exception e) {
-				System.out.println("Char error");
+		try {
+			System.out.println("How many mines do you want?");
+			key = new Scanner(System.in);
+			nMines = key.nextInt();
+			if (nMines > 0 && nMines < 100) {
+				return nMines;
+			} else {
+				System.out.println("Please enter a number between 1 and 99");
 				return 0;
 			}
+		} catch(Exception e) {
+			System.out.println("Char error");
+			return 0;
 		}
-		return nMines;
 	}
 	
 	/**

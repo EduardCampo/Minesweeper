@@ -35,11 +35,33 @@ class ExploratoryTesting {
 		System.setIn(in);
 		assertEquals(0,util.getNumberOfMines());
 		
-		// També m'ho torna a demanar, fantàstic
+		// Altre cop em demana un altre input
+		// I si vull posar mines negatives? 
+		in = new ByteArrayInputStream("-5".getBytes());
+		System.setIn(in);
+		assertEquals(0,util.getNumberOfMines());
+		
+		// També m'ho torna a demanar, funciona correctament
 		// Li direm doncs que volem 6 mines
 		in = new ByteArrayInputStream("6".getBytes());
 		System.setIn(in);
 		assertEquals(6,util.getNumberOfMines());
+		
+		// Cap problema fins aqui
+		// Em demana la posició x i y de la primera mina
+		// I si poso coordenades fora dels límits?
+		assertFalse(board.placeMine(-3, 10));
+		
+		// Altre cop em demana que intenti posar la mina 1
+		// La posaré a la ubicació 1 1
+		assertTrue(board.placeMine(1, 1));
+		
+		// A veure si s'ha posat bé
+		assertEquals('M',board.getChar(1, 1));
+		
+		// Doncs sí, hi ha una mina a la casella 1 1
+		
+		
 	}
 
 }
