@@ -141,8 +141,8 @@ public class BoardTestCaixaNegra {
 	}
 	
 	
-	// Test per veure si s'ha guanyat o no el joc
-	// amb la classe gameWon
+	// Test per veure si la comprobació de victoria
+	//funciona correctament
 	@Test
 	public void gameWonTest() {
 		Board board = new Board();
@@ -155,6 +155,9 @@ public class BoardTestCaixaNegra {
 		
 	}
 	
+	// Test que comproba que getChar retorna el valor correcte
+	// ha de retornar * per coordenades no valides o el valor de la casella
+	// especificada si la coordenada es válida
 	@Test
 	public void getCharTest() {
 		Board board = new Board();
@@ -175,6 +178,8 @@ public class BoardTestCaixaNegra {
 		
 	}
 	
+	// Test de valors frontera que comproba que openSquare retorna false
+	// per coordenades no valides y true per coordenades valides
 	@Test
 	public void openSquareTest() {
 		Board board = new Board();
@@ -190,6 +195,9 @@ public class BoardTestCaixaNegra {
 		
 	}
 	
+	// Test de valors frontera que comproba que setChar retorna false
+	// per coordenades no valides y true per coordenades valides, y que els valors
+	// s'inserten correctament
 	@Test
 	public void setCharTest() {
 		Board board = new Board();
@@ -214,6 +222,8 @@ public class BoardTestCaixaNegra {
 		
 	}
 	
+	// Test de valors frontera que comproba que wrongPosition retorna true
+	// per coordenades no valides y false per coordenades valides
 	@Test
 	public void wrongPositionTest() {
 		Utilities util = new Utilities();
@@ -228,6 +238,8 @@ public class BoardTestCaixaNegra {
 		assertFalse(util.wrongPosition(0, 9));
 	}	
 	
+	// Test de comproba que s'inserten el número de mines especificades per l'usuari
+	// sustituim la entrada estandar per simular inputs de l'usuari.
 	@Test
 	public void getNumberOfMinesTest() {
 		
@@ -272,6 +284,8 @@ public class BoardTestCaixaNegra {
 		
 	}
 	
+	// Test que comproba que getPosition retorna els valors correctes
+	// sustituim la entrada estandar per simular inputs de l'usuari. 
 	@Test
 	public void getPositionInputTest() {
 		
@@ -296,6 +310,8 @@ public class BoardTestCaixaNegra {
 		
 	}
 	
+	// Test de valors frontera que comproba que getOption retorna els valors correctes
+	// sustituim la entrada estandar per simular inputs de l'usuari. 
 	@Test
 	public void getOptionTest() {
 		

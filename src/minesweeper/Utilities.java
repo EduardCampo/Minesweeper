@@ -18,6 +18,7 @@ public class Utilities {
 		return false;
 	}
 	
+	
 	/**
 	 * Funció per demanar al usuari el nombre de mines que vol
 	 * introduïr al taulell
@@ -110,5 +111,14 @@ public class Utilities {
 		else if (i == 7) { xy[0] = x+1; xy[1] = y-1; }
 		else { System.out.println("Fatal Error"); }
 		return xy;
+	}
+	
+	public void showWinners(String[] winners) {
+		int i= 0;
+		System.out.println("Winners:");
+		while (i < winners.length) {
+			System.out.println(winners[i]);
+			i++;
+		}
 	}
 }
