@@ -67,7 +67,7 @@ public class Execute {
 					x = xy[0]; y = xy[1];
 					error = board.setFlag(x,y);
 				} while (error == false);
-			} 
+			}
 		} while (!check);
 	}
 	
