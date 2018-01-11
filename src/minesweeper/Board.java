@@ -276,6 +276,7 @@ public class Board {
 	public void gameOver() {
 		System.out.println("GAME OVER: YOU LOST");
 		printBoard();
+		System.exit(1);
 	}
 
 }
