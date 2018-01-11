@@ -1,19 +1,22 @@
 package minesweeper;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.util.Scanner;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
-class ExploratoryTesting {
+public class ExploratoryTesting {
 	
 	// Test exploratori
 	// Hi ha comentaris de tot el que s'ha anat pensant
 	// i trobant durant el test per facilitar el seguiment
+	
 	@Test
-	void test() {
+	public void test() {
 		// Nova instància board per testejar
 		Board board = new Board();
 		

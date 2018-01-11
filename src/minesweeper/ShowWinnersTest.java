@@ -21,6 +21,12 @@ public class ShowWinnersTest {
 		System.out.println("Doctor Cebolla");
 		System.out.println("     ");
 		System.out.println("[Recieved output]");
-		util.showWinners(mock.getWinners());
+		assertEquals(util.showWinners(mock.getWinners()),3);
+		String [] winners2 =  {};
+		assertEquals(util.showWinners(winners2),0);
+		String [] winners3 =  {"Javi"};
+		assertEquals(util.showWinners(winners3),1);
+		String [] winners4 =  {"Javi","Eduard"};
+		assertEquals(util.showWinners(winners4),2);
 	}
 }

@@ -113,12 +113,13 @@ public class Utilities {
 		return xy;
 	}
 	
-	public void showWinners(String[] winners) {
+	public int showWinners(String[] winners) {
 		int i= 0;
 		System.out.println("Winners:");
 		while (i < winners.length) {
 			System.out.println(winners[i]);
 			i++;
 		}
+		return i;
 	}
 }
