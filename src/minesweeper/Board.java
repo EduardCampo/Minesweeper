@@ -177,7 +177,7 @@ public class Board {
 			return '·';
 		} else { // Else
 			System.out.println("Can't flag this square");
-			return '*';
+			return getChar(x,y);
 		}
 	}
 	
@@ -276,7 +276,6 @@ public class Board {
 	public void gameOver() {
 		System.out.println("GAME OVER: YOU LOST");
 		printBoard();
-		System.exit(1);
 	}
 
 }

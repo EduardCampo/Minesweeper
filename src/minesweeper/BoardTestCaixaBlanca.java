@@ -12,7 +12,7 @@ import org.junit.Test;
 
 public class BoardTestCaixaBlanca {
 
-	
+	// 1
 	// Decision testing a la classe placeMine
 	// Les decisions 1 i 2 estan especificades a la classe
 	// Comprovem a més que s'ha fet el que toca amb ajuda
@@ -35,6 +35,7 @@ public class BoardTestCaixaBlanca {
 		assertEquals(board.getChar(0,0),'M');
 	}
 	
+	// 2
 	// Decision testing a la classe flagLogic
 	// Les decisions 1, 2, 3 i 4 estan especificades a la classe
 	@Test
@@ -61,6 +62,7 @@ public class BoardTestCaixaBlanca {
 		assertEquals('*',board.flagLogic(0,0));
 	}
 	
+	// 3
 	// Decision testing a la classe getRoundSquare
 	// Les decisions són del 0 al 7 com es veu a la classe
 	// S'assumeix que si un és True, els anteriors són False
@@ -97,6 +99,7 @@ public class BoardTestCaixaBlanca {
 		assertArrayEquals(xy, util.getRoundSquare(4, 4, 85));
 	}
 	
+	// 4
 	// Decision testing a la classe checkMinesAround
 	// Les decisions i el seu nom es veuen a la classe
 	// La entrada està controlada abans de cridar la funció,
@@ -119,6 +122,7 @@ public class BoardTestCaixaBlanca {
 		
 	}
 	
+	// 5
 	// Condition testing a la classe gameWon
 	// Les condicions són:
 	// M - Troba una M al taulell
@@ -140,6 +144,7 @@ public class BoardTestCaixaBlanca {
 		assertFalse(board.gameWon());
 	}
 	
+	// 6
 	// Condition testing a la classe wrongPosition de utils
 	// Les condicions son:
 	// 1 - x < 0

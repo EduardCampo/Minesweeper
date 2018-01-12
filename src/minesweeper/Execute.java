@@ -11,6 +11,16 @@ public class Execute {
 	 */
 	public static void main(String[] args) throws Exception{
 		int checkm = 0;
+		int cac = 0;
+		for (int r = 0; r < 10; r++) {
+			for (int e = 0; e < 10; e++) {
+				System.out.println(r+" "+e);
+				cac++;
+			}
+		}
+		System.out.println(cac);
+		
+		
 		boolean gameOver = false;
 		Board board = new Board();
 		board.printBoard();	
@@ -41,9 +51,9 @@ public class Execute {
 		boolean error = false;
 		do {
 			// THIS IS THE DEBUG PRINT BOARD
-			//board.printBoard();
+			board.printBoard();
 			// THIS IS THE REAL PLAYER PRINT BOARD
-			board.printBoardPlayer();
+			//board.printBoardPlayer();
 			option = util.getOption();
 			
 			if (option == 1) {
