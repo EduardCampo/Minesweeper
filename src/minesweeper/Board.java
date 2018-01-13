@@ -1,5 +1,7 @@
 package minesweeper;
 
+import java.io.IOException;
+
 public class Board {
 	
 	
@@ -109,14 +111,16 @@ public class Board {
 	/**
 	 * Funció que itera per posar nMines al taulell
 	 * @param nMines nombre de mines a posar
+	 * @throws IOException 
 	 */
-	public void setMines(int nMines) {
+	public void setMines(int nMines) throws IOException {
 		int[] xy = new int[2];
 		boolean check;
 		for (int i = 0; i < nMines; i++) {
 			check = false;
 			while (!check) {
 				System.out.println("Set the mine " + (i+1) + " position: x y");
+				AutomaticTesting.nextIn(); // COMENTAR
 				xy = util.getPositionInput();
 				check = placeMine(xy[0],xy[1]);			
 			}
