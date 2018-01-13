@@ -1,5 +1,9 @@
 package minesweeper;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Scanner;
 
 public class Utilities {
@@ -10,6 +14,7 @@ public class Utilities {
 	 * @param y
 	 * @return true si index error, flase si són correctes
 	 */
+	
 	public boolean wrongPosition(int x, int y) {
 		if (x < 0 || y < 0 || x > 9 || y > 9) {
 			//System.out.println("Index Error");
@@ -17,6 +22,7 @@ public class Utilities {
 		}
 		return false;
 	}
+	
 	
 	
 	/**
@@ -113,13 +119,14 @@ public class Utilities {
 		return xy;
 	}
 	
-	public int showWinners(String[] winners) {
-		int i= 0;
-		System.out.println("Winners:");
-		while (i < winners.length) {
-			System.out.println(winners[i]);
-			i++;
-		}
-		return i;
+	public int showWinners() {
+		Map<String, Integer> winners = new HashMap<>();
+		GetWinnersDBMock GetWinnersDB = new GetWinnersDBMock();
+		winners = GetWinnersDB.getWinners();
+		winners = MapUtil.sortByValue(winners);
+		System.out.println("Winner-Wins:");
+		Entry<String,Integer> entry = winners.entrySet().iterator().next();
+		System.out.println(Arrays.toString(winners.entrySet().toArray()));
+		return winners.size();
 	}
 }

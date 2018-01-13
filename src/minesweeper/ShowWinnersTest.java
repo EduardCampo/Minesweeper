@@ -15,18 +15,10 @@ public class ShowWinnersTest {
 		Utilities util = new Utilities();
 		GetWinnersDBMock mock = new GetWinnersDBMock();
 		System.out.println("[Expected output]");
-		System.out.println("Winners:");
-		System.out.println("Javi");
-		System.out.println("Eduard");
-		System.out.println("Doctor Cebolla");
+		System.out.println("Winner-Wins:");
+		System.out.println("[Eduard=7, Javi=5, Robert=4]");
 		System.out.println("     ");
 		System.out.println("[Recieved output]");
-		assertEquals(util.showWinners(mock.getWinners()),3);
-		String [] winners2 =  {};
-		assertEquals(util.showWinners(winners2),0);
-		String [] winners3 =  {"Javi"};
-		assertEquals(util.showWinners(winners3),1);
-		String [] winners4 =  {"Javi","Eduard"};
-		assertEquals(util.showWinners(winners4),2);
+		assertEquals(util.showWinners(),3);
 	}
 }

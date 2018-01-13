@@ -1,9 +1,9 @@
 package minesweeper;
 
-import java.util.Hashtable;
+import java.util.Map;
 
 public interface GetWinnersDB {
 			
-	public String[] getWinners();
+	public Map<String, Integer> getWinners();
 
 }
