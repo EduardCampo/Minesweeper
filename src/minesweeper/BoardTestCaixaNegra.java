@@ -14,6 +14,8 @@ public class BoardTestCaixaNegra {
 	//@Before
 	//public void setUp() throws Exception {}
 	
+	
+	// 1
 	// Tests de valors límit a la classe placeMine
 	// També testeja getChar que retorna el valor 
 	// de la casella indicada o * en cas d'error
@@ -41,6 +43,7 @@ public class BoardTestCaixaNegra {
 		assertFalse(board.placeMine(10,10)); assertEquals(board.getChar(10,10),'*');
 	}
 	
+	// 2
 	// Tests de valors límit a la classe setFlag
 	// També testeja getChar que retorna el valor 
 	// de la casella indicada o * en cas d'error
@@ -88,6 +91,7 @@ public class BoardTestCaixaNegra {
 		
 	}
 	
+	// 3
 	// Varis tests per mirar quantes mines hi ha al
 	// voltant d'una casella específica
 	@Test
@@ -123,6 +127,7 @@ public class BoardTestCaixaNegra {
 		assertEquals(3,board.checkMinesAround(0, 0));
 	}
 	
+	// 4
 	// Comprova que es retornin els valors que toquen
 	// a la classe flagLogic
 	@Test
@@ -136,16 +141,28 @@ public class BoardTestCaixaNegra {
 		assertEquals(board.flagLogic(2,0),'M');
 		board.gameBoard[3][0] = 'I';
 		assertEquals(board.flagLogic(3,0),'·');
+		
+		// Nous test fets després de trobar els error 2 i 3
+		// durant el exploratory testing (explicats al informe)
 		board.gameBoard[4][0] = '7';
-		assertEquals(board.flagLogic(4,0),'*');
+		assertEquals(board.flagLogic(4,0),'7');
+		board.gameBoard[8][8] = '4';
+		assertEquals(board.flagLogic(8,8),'4');
+		board.gameBoard[4][6] = '3';
+		assertEquals(board.flagLogic(4,6),'3');
+		board.gameBoard[9][8] = '-';
+		assertEquals(board.flagLogic(9,8),'-');
 	}
 	
-	
+	// 5
 	// Test per veure si la comprobació de victoria
-	//funciona correctament
+	// funciona correctament
 	@Test
 	public void gameWonTest() {
 		Board board = new Board();
+		board.gameBoard[8][8] = 'F';
+		board.gameBoard[5][5] = '6';
+		board.gameBoard[7][7] = '-';
 		assertTrue(board.gameWon());
 		board.gameBoard[0][0] = 'M';
 		assertFalse(board.gameWon());
@@ -155,6 +172,7 @@ public class BoardTestCaixaNegra {
 		
 	}
 	
+	// 6
 	// Test que comproba que getChar retorna el valor correcte
 	// ha de retornar * per coordenades no valides o el valor de la casella
 	// especificada si la coordenada es válida
@@ -178,6 +196,7 @@ public class BoardTestCaixaNegra {
 		
 	}
 	
+	// 7
 	// Test de valors frontera que comproba que openSquare retorna false
 	// per coordenades no valides y true per coordenades valides
 	@Test
@@ -192,9 +211,9 @@ public class BoardTestCaixaNegra {
 		assertTrue(board.openSquare(0, 0));
 		assertTrue(board.openSquare(5, 5));
 		assertTrue(board.openSquare(0, 9));
-		
 	}
 	
+	// 8
 	// Test de valors frontera que comproba que setChar retorna false
 	// per coordenades no valides y true per coordenades valides, y que els valors
 	// s'inserten correctament
@@ -210,6 +229,8 @@ public class BoardTestCaixaNegra {
 		assertTrue(board.setChar(0, 0,'F'));
 		assertTrue(board.setChar(5, 5,'F'));
 		assertTrue(board.setChar(0, 9,'F'));
+		
+		// Test de 2 taules iguals
 		char[][] gameBoardTest = new char[10][10];
 		gameBoardTest[9][9] = 'F';
 		gameBoardTest[0][0] = 'F';
@@ -222,6 +243,7 @@ public class BoardTestCaixaNegra {
 		
 	}
 	
+	// 9
 	// Test de valors frontera que comproba que wrongPosition retorna true
 	// per coordenades no valides y false per coordenades valides
 	@Test
@@ -238,6 +260,7 @@ public class BoardTestCaixaNegra {
 		assertFalse(util.wrongPosition(0, 9));
 	}	
 	
+	// 10
 	// Test de comproba que s'inserten el número de mines especificades per l'usuari
 	// sustituim la entrada estandar per simular inputs de l'usuari.
 	@Test
@@ -284,6 +307,7 @@ public class BoardTestCaixaNegra {
 		
 	}
 	
+	// 11
 	// Test que comproba que getPosition retorna els valors correctes
 	// sustituim la entrada estandar per simular inputs de l'usuari. 
 	@Test
@@ -310,6 +334,7 @@ public class BoardTestCaixaNegra {
 		
 	}
 	
+	// 12
 	// Test de valors frontera que comproba que getOption retorna els valors correctes
 	// sustituim la entrada estandar per simular inputs de l'usuari. 
 	@Test
