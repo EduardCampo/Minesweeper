@@ -7,9 +7,10 @@ import org.junit.Test;
 public class ShowWinnersTest {
 	
 	// Test amb el que comprobem que la funcio showWinners escriu els valors correctes
-	// (també testeja les funcions que crida showWinners: toString i sortByValue)
-	// Com que l'acces a la base de dades no esta implementada, getWinners obté els valors
-	// de un mock object de l'objecte que tindria accés a aquesta DB
+	// (tambÃ© testeja les funcions que crida showWinners: toString i sortByValue)
+	// Com que l'acces a la base de dades no esta implementada, getWinners obtÃ© els valors
+	// de un mock object de l'objecte que tindria accÃ©s a aquesta DB
+	// el assert se asegura que el numero de jugadores impresos es el correcto
 	@Test
 	public void testShowWinners1() {
 		
