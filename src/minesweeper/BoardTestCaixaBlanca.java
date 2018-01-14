@@ -185,7 +185,8 @@ public class BoardTestCaixaBlanca {
 		assertFalse(board.openSquare(10, 3));
 		// PATH 2
 		board.gameBoard[0][0] = 'M';
-		assertFalse(board.openSquare(0, 0));
+		assertTrue(board.openSquare(0, 0));
+		assertTrue(board.gameLost);
 		// PATH 3
 		assertTrue(board.openSquare(5, 5));
 		

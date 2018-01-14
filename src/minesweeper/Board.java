@@ -211,7 +211,7 @@ public class Board {
 		if (!util.wrongPosition(x, y)){
 			if (gameBoard[x][y] == 'M' || gameBoard[x][y] == 'F') {
 				gameLost = true;
-				return false;
+				return true;
 			}
 			checkMinesAround(x, y);
 			return true;
