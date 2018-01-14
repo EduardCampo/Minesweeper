@@ -18,6 +18,7 @@ public class LoopTesting {
 
 
 	//Test del loop de toString haciendo 0,1,2 o 3 iteraciones (no upper bound)
+	//comprueba que el string que devuelve la funcion es igual al esperado
 	@Test
 	public void toStringLoopTest() {
 		Utilities util = new Utilities();
