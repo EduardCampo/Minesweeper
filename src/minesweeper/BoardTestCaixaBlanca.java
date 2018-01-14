@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import static org.junit.Assert.assertNotEquals;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Scanner;
 
@@ -59,7 +60,7 @@ public class BoardTestCaixaBlanca {
 		// 1,2,3,4 - False
 		// Else
 		board.setChar(0, 0, '7');
-		assertEquals('*',board.flagLogic(0,0));
+		assertEquals('7',board.flagLogic(0,0));
 	}
 	
 	// 3
@@ -176,5 +177,17 @@ public class BoardTestCaixaBlanca {
 		assertFalse(util.wrongPosition(7, 4));
 		
 	}
-
+	
+	@Test
+	public void openSquarePathTest() throws IOException {
+		Board board = new Board();
+		// PATH 1
+		assertFalse(board.openSquare(10, 3));
+		// PATH 2
+		board.gameBoard[0][0] = 'M';
+		assertFalse(board.openSquare(0, 0));
+		// PATH 3
+		assertTrue(board.openSquare(5, 5));
+		
+	}
 }

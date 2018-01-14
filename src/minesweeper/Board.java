@@ -16,6 +16,7 @@ public class Board {
 	
 	char[][] gameBoard = new char[10][10];
 	private static Utilities util = new Utilities();
+	boolean gameLost = false;
 	
 	/**
 	 * Constructor per defecte que inicia la matriu
@@ -207,18 +208,17 @@ public class Board {
 	 * @return
 	 */
 	public boolean openSquare(int x, int y) {
-		boolean check = false;
-			if (!util.wrongPosition(x, y)){
-				if (gameBoard[x][y] == 'M' || gameBoard[x][y] == 'F') {
-					gameOver();
-					return false;
-				}
-				checkMinesAround(x, y);
-				return true;
-			} else {
-				System.out.println("Not a valid position");
+		if (!util.wrongPosition(x, y)){
+			if (gameBoard[x][y] == 'M' || gameBoard[x][y] == 'F') {
+				gameLost = true;
 				return false;
 			}
+			checkMinesAround(x, y);
+			return true;
+		} else {
+			System.out.println("Not a valid position");
+			return false;
+		}
 	}
 	
 	/**
@@ -277,9 +277,5 @@ public class Board {
 	 * Acaba el joc mostrant totes les mines i parant l'execució
 	 * del programa abruptament
 	 */
-	public void gameOver() {
-		System.out.println("GAME OVER: YOU LOST");
-		printBoard();
-	}
 
 }

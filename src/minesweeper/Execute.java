@@ -23,30 +23,26 @@ public class Execute {
 		//AutomaticTesting.setupTest(4); //Sets up the fourth test
 		
 		int checkm = 0;
-		int cac = 0;
-		for (int r = 0; r < 10; r++) {
-			for (int e = 0; e < 10; e++) {
-				System.out.println(r+" "+e);
-				cac++;
-			}
-		}
-		System.out.println(cac);
-		
-		
-		boolean gameOver = false;
+		boolean gameWon = false; boolean gameLost = false;
 		Board board = new Board();
 		board.printBoard();	
 		while (checkm==0) {
-			AutomaticTesting.nextIn(); // COMENTAR
+			AutomaticTesting.nextIn();
 			checkm = util.getNumberOfMines();			
 		}
 		board.setMines(checkm);
-		while (!gameOver) {
-			AutomaticTesting.nextIn(); // COMENTAR
+		while (!gameWon && !gameLost) {
+			AutomaticTesting.nextIn();
 			menu(board);
-			gameOver = board.gameWon();
+			gameWon = board.gameWon();
+			gameLost = board.gameLost;
 		}
-		System.out.println("YOU WIN");
+		if (gameWon) {
+			System.out.println("YOU WIN");
+		} else if (gameLost) {
+			System.out.println("YOU LOST");
+		}
+		
 	}
 	
 	/**
