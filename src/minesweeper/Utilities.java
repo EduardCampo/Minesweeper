@@ -119,14 +119,18 @@ public class Utilities {
 		return xy;
 	}
 	
+	/**
+	 * Recibe la tabla de ganadores y victorias en un Map, llama a una función
+	 * que la ordena por victorias y la muestra por pantalla
+	 */
 	public int showWinners() {
 		Map<String, Integer> winners = new HashMap<>();
 		GetWinnersDBMock GetWinnersDB = new GetWinnersDBMock();
 		winners = GetWinnersDB.getWinners();
 		winners = MapUtil.sortByValue(winners);
 		System.out.println("Winner-Wins:");
-		Entry<String,Integer> entry = winners.entrySet().iterator().next();
-		System.out.println(Arrays.toString(winners.entrySet().toArray()));
+		//System.out.println(Arrays.toString(winners.entrySet().toArray()));
+		System.out.println(MapUtil.toString(winners));
 		return winners.size();
 	}
 }
